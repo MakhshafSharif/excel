@@ -1,0 +1,85 @@
+public class SpreadSheetReader {
+
+public static void main(String args[]) {
+
+Scanner File = new Scanner(System.in);
+System.out.println("Enter file name:");
+String fileName = File.nextLine();
+
+try{
+
+FileInputStream excelFile = new FileInputStream(new File(fileName));
+Workbook workbook = WorkbookFactory.create(excelFile);
+workbook.setMissingCellPolicy(MissingCellPolicy.RETURN_BLANK_AS_NULL);
+
+Sheet datatypeSheet = workbook.getSheetAt(0);
+int maxNumofCells = datatypeSheet.getRow(0).getLastCellNum();
+Iterator<Row> iterator = datatypeSheet.iterator();
+int i = 0;
+int counter = 0;
+System.out.println("Counter:::++"+counter);
+
+while(iterator.hasNext()){
+Row currentRow = iterator.next();
+Iterator<Cell>cellIterator = currentRow.iterator();
+if(i==0){
+i++;
+continue;
+}
+int count = 0;
+while(cellIterator.hasNext()){
+
+Cell currentcell = cellIterator.next();
+if(count == 0){
+if((currentCell).getStringCellValue().equals("")){
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}else{
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}
+}
+
+if(count == 1){
+if((currentCell).getStringCellValue().equals("")){
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}else{
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}
+}
+
+if(count == 2){
+if((currentCell).getStringCellValue().equals("")){
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}else{
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}
+}
+
+if(count == 3){
+if((currentCell).getStringCellValue().equals("")){
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}else{
+System.out.println("NAME:" +currentCell.getStringCellValue());
+}
+}
+count++;
+}
+System.println("Counter++"+counter);
+System.out.println("i++"+i);
+if(i == 120){
+break;
+
+}
+i++;
+counter++;
+}
+}catch(fileNotFoundException e){
+e.printStackTrace();
+}catch (IOException e){
+e.printStackTrace();
+}catch (EncryptedDocumentException e){
+e.printStackTrace();
+}catch(InvalidFormatException e){
+e.printStackTrace();
+}
+}
+}
